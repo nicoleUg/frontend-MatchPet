@@ -1,0 +1,223 @@
+:root {
+    /* Colores Basados en la Imagen */
+    --color-primary: #005E76; /* Azul Oscuro (texto principal) */
+    --color-secondary: #FF7F32; /* Naranja (botones y detalles) */
+    --color-background-start: #e0f7fa; /* Verde/Azul claro para el fondo */
+    --color-background-end: #f1f8e9; /* Amarillo/Naranja claro para el fondo */
+    --color-card-bg: #ffffff; /* Fondo del formulario */
+    --color-text-muted: #888; /* Texto gris sutil */
+    --color-input-bg: #f3f3f5; /* Fondo del input */
+    --color-placeholder: #a0a0a0; /* Color del placeholder */
+    --color-shadow: rgba(0, 0, 0, 0.1);
+
+    /* Tipografía y Espaciado */
+    --font-family: 'Inter', sans-serif;
+    --border-radius: 0.625rem; /* 10px */
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+}
+
+/* Reset y Estilos Base */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--color-background-start);
+    /* Fondo degradado y sutiles patitas */
+    background-image: 
+        repeating-radial-gradient(circle at 10% 10%, rgba(255, 255, 255, 0.2), transparent 10px),
+        repeating-radial-gradient(circle at 90% 90%, rgba(255, 255, 255, 0.2), transparent 10px),
+        linear-gradient(135deg, var(--color-background-start) 0%, var(--color-background-end) 100%);
+    background-size: cover;
+    padding: var(--spacing-md);
+}
+
+/* Ocultar labels para accesibilidad */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* Contenedor principal para centrar el formulario */
+.container {
+    width: 100%;
+    max-width: 400px;
+}
+
+/* --- Estilos de la Tarjeta (Card) --- */
+.card {
+    background-color: var(--color-card-bg);
+    border-radius: calc(var(--border-radius) * 2); 
+    padding: var(--spacing-lg) var(--spacing-lg);
+    box-shadow: 0 10px 30px var(--color-shadow);
+    text-align: center;
+    width: 100%;
+}
+
+/* --- Encabezado --- */
+.header-content {
+    margin-bottom: var(--spacing-lg);
+}
+.header-content h1 {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    margin-top: var(--spacing-sm);
+    font-weight: 600;
+}
+.header-content p {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin-top: 0.25rem;
+}
+
+/* Logo Circular de Patitas */
+.logo-circle {
+    width: 4.5rem;
+    height: 4.5rem;
+    background-color: var(--color-secondary);
+    border-radius: 50%;
+    margin: 0 auto;
+    /* Estas 3 líneas son clave para centrar la imagen dentro del círculo: */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* Mantenlo para posibles futuros elementos superpuestos */
+}
+.logo-image {
+    max-width: 100%; /* La imagen nunca será más ancha que su contenedor */
+    max-height: 100%; /* La imagen nunca será más alta que su contenedor */
+    object-fit: contain; /* Asegura que la imagen esté contenida sin ser recortada */
+    border-radius: 50%; /* Opcional: para que la imagen también se vea circular si es cuadrada */
+    /* Añade un poco de relleno interno si es necesario para que no toque el borde del círculo */
+    padding: 0.5rem; 
+}
+
+/* --- Formulario y Entradas --- */
+.form-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+.input-group {
+    margin-bottom: 0.25rem;
+}
+.custom-input {
+    width: 100%;
+    padding: var(--spacing-md);
+    border: none;
+    background-color: var(--color-input-bg);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    color: var(--color-primary);
+    transition: box-shadow 0.15s ease;
+}
+.custom-input::placeholder {
+    color: var(--color-placeholder);
+}
+.custom-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-secondary);
+}
+
+/* --- Botones --- */
+.btn-primary,
+.btn-secondary {
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    transition: transform 0.1s ease-in-out, opacity 0.1s ease-in-out;
+}
+.btn-primary:active, .btn-secondary:active {
+    transform: scale(0.98);
+}
+
+/* Botón 'Crear Cuenta' (Naranja) */
+.btn-primary {
+    background-color: var(--color-secondary);
+    color: #fff;
+    border: none;
+    margin-top: var(--spacing-sm);
+    box-shadow: 0 4px 10px rgba(255, 127, 50, 0.4);
+}
+
+/* Botón 'Iniciar Sesión' (Bordeado) */
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    margin-top: 0.5rem;
+}
+
+/* Separador 'o' */
+.separator {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    text-align: center;
+    position: relative;
+    margin: var(--spacing-md) 0;
+}
+.separator::before,
+.separator::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background-color: #eee;
+}
+.separator::before {
+    left: 0;
+}
+.separator::after {
+    right: 0;
+}
+
+/* Caja de Información Adicional */
+.info-box {
+    background-color: #fffbe9; 
+    border: 1px solid #fae38e; 
+    border-radius: var(--border-radius);
+    padding: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+    display: flex;
+    align-items: flex-start;
+    text-align: left;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+}
+.info-box i {
+    color: #d4a017;
+    padding-top: 2px;
+}
+.info-box p {
+    color: #4e4e4e;
+    line-height: 1.3;
+    margin: 0;
+}
+
+/* Texto del Footer */
+.footer-text {
+    margin-top: var(--spacing-lg);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+}

@@ -1,0 +1,310 @@
+/* Variables de color (Tomadas del registerStyle.css) */
+:root {
+    --background: #ffffff;
+    --foreground: #005E76; /* Azul oscuro (Primary) */
+    --card: #ffffff;
+    --primary: #005E76;
+    --primary-foreground: #ffffff;
+    --secondary: #FF7F32; /* Naranja fuerte (Button-Start) */
+    --secondary-light: #FF9A8B; /* Naranja claro (Button-End) */
+    --muted: #ececf0;
+    --muted-foreground: #717182; /* Gris para textos secundarios */
+    --border: rgba(0, 0, 0, 0.1);
+    --input-background: #f3f3f5;
+    --ring: rgba(0, 94, 118, 0.4); 
+    --radius: 0.625rem;
+    --font-weight-medium: 500;
+    --font-weight-normal: 400;
+    --logo-bg: #f5e4d9;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Inter', Arial, sans-serif;
+}
+
+body {
+    /* Fondo con degradado verde/crema como en la imagen MatchPet */
+    background-image: linear-gradient(135deg, #e0f7fa 0%, #f1f8e9 100%);
+    min-height: 100vh;
+    margin: 0; 
+    padding: 0;
+    /* Damos espacio al cuerpo para que no quede debajo del navbar fijo */
+    padding-top: 80px; 
+    color: var(--foreground);
+}
+
+/* --- Contenedor Principal (Cuerpo) --- */
+.search-container {
+    max-width: 900px;
+    margin: 40px auto; 
+    padding: 20px 0; 
+    background-color: transparent; 
+    box-shadow: none;
+}
+
+h1 {
+    text-align: center;
+    color: var(--foreground);
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+.subtitle {
+    text-align: center;
+    color: var(--muted-foreground);
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+/* --- Formulario de Búsqueda --- */
+.search-form {
+    background-color: var(--card); 
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 15px;
+    align-items: flex-start;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    /* Las etiquetas están ocultas en el diseño de MatchPet */
+    display: none; 
+}
+
+/* Estilo de Inputs y Selects */
+input[type="text"],
+select {
+    width: 100%;
+    height: 40px;
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background-color: var(--input-background);
+    color: var(--foreground);
+    font-size: 14px;
+}
+
+input[type="text"]::placeholder {
+    color: rgba(0, 94, 118, 0.5); 
+}
+
+/* Estilos de los botones de Especie (Perro, Gato, Otros) - Mantenido de tu código anterior */
+.input-group {
+    display: flex;
+    gap: 10px;
+}
+
+.input-group button {
+    /* Aquí puedes necesitar ajustar estos estilos a los botones de MatchPet si no son inputs */
+    flex: 1;
+    background-color: var(--input-background);
+    color: var(--foreground);
+    border: 1px solid var(--border);
+    padding: 8px 15px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: var(--font-weight-medium);
+}
+
+.input-group button.active {
+    background-color: var(--primary); 
+    color: white;
+    border-color: var(--primary);
+}
+
+/* Fila de botones de acción Buscar y Limpiar */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    grid-column: 3 / 4; 
+    align-self: end;
+}
+.action-buttons .form-group {
+    flex-direction: row;
+    gap: 10px;
+}
+
+.search-button, .clear-button {
+    height: 40px;
+    padding: 0 20px;
+    border: none;
+    border-radius: var(--radius);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Botón Buscar (Naranja con degradado) */
+.search-button {
+    background-image: linear-gradient(to right, var(--secondary), var(--secondary-light));
+    color: white;
+}
+
+/* Botón Limpiar */
+.clear-button {
+    background-color: var(--input-background);
+    color: var(--foreground);
+    border: 1px solid var(--border);
+}
+
+/* Contador de mascotas */
+.pet-count {
+    text-align: center;
+    margin: 20px 0 10px;
+    font-size: 14px;
+    color: var(--secondary);
+    font-weight: var(--font-weight-medium);
+}
+
+/* --- Resultados (Tarjetas) --- */
+#searchResults {
+    margin-top: 30px;
+}
+
+.results-title {
+    color: var(--primary);
+    font-size: 20px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding: 20px 0;
+}
+
+.pet-card {
+    background-color: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.pet-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.pet-image-container {
+    position: relative;
+    width: 100%;
+    height: 200px;
+}
+
+.pet-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 20%; 
+}
+
+/* Etiqueta Perro/Gato/Otro en la imagen */
+.species-tag {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--primary);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.pet-content {
+    padding: 15px;
+}
+
+.pet-content h3 {
+    color: var(--primary);
+    margin: 0;
+    font-size: 18px;
+    font-weight: var(--font-weight-medium);
+}
+
+.pet-info-line {
+    font-size: 12px;
+    color: #666;
+    margin: 4px 0 10px;
+}
+
+.pet-description {
+    font-size: 14px;
+    color: var(--foreground);
+    margin-bottom: 15px;
+    line-height: 1.4;
+    max-height: 60px; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+.match-button {
+    flex-grow: 1;
+    background-image: linear-gradient(to right, var(--secondary), var(--secondary-light));
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: var(--font-weight-medium);
+    transition: box-shadow 0.2s;
+}
+
+.match-button:hover {
+    box-shadow: 0 4px 10px rgba(255, 127, 50, 0.4);
+}
+
+.info-button {
+    width: 40px;
+    height: 40px;
+    background-color: var(--muted);
+    color: var(--secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    cursor: pointer;
+}
+
+/* --- ESTILO DE NO ENCONTRADO --- */
+.no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px; 
+    background: var(--card); 
+    border: 2px dashed var(--secondary); 
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.not-found-message {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--secondary); 
+    margin: 10px 0;
+}
+
+.no-results p {
+    color: #666;
+    font-size: 18px;
+}

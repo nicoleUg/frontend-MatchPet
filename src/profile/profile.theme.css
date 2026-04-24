@@ -1,0 +1,11 @@
+/* Profile theme colors — centraliza colores usados en la vista de perfil */
+:root {
+  --profile-bg-gradient-start: #dff6f0;
+  --profile-bg-gradient-end: #fef5ea;
+  --profile-accent: #FF7F32; /* naranja */
+  --profile-accent-2: #FF9A8B; /* coral */
+  --profile-teal: #0EA5A4; /* teal */
+  --profile-deep-teal: #0F766E; /* verde oscuro */
+  --profile-stat-bg: #ffffff;
+  --profile-card-shadow: 0 12px 30px rgba(0,0,0,0.06);
+}

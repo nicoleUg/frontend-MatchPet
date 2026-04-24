@@ -1,0 +1,186 @@
+<!-- src/Match/match.html -->
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MatchPet - ¡Encuentra tu Match!</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../style.css" />
+    <link rel="stylesheet" href="matchstyle.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="navbar-logo">
+        <div class="logo-box">
+          <img
+            src="../assets/Logo.png"
+            alt="MatchPet Logo"
+            class="logo-image"
+          />
+        </div>
+      </div>
+      <div class="navbar-nav">
+        <a class="btn-search" href="../Search_for_pet/Search.html">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          Buscar
+        </a>
+        <a class="nav-link" href="../Register_Pet/Register.html">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+          <span>Publicar</span>
+        </a>
+        <a class="nav-link" href="../Match/match.html">
+          <i class="fa-solid fa-heart"></i>
+          <span>Match</span>
+        </a>
+        <div class="profile-container">
+          <div class="nav-separator" aria-hidden="true"></div>
+          <a
+            href="../profile/profile.html"
+            id="profile-pill"
+            class="profile-pill"
+          >
+            <i class="fa-solid fa-user"></i>
+            <span id="profile-name">Usuario</span>
+          </a>
+        </div>
+
+        <!-- 👇 Logout: va al index (login principal) -->
+        <a
+          class="nav-link"
+          href="/index.html"
+          id="logout-link"
+          title="Salir"
+        >
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>Salir</span>
+        </a>
+      </div>
+    </nav>
+
+    <div id="app-container">
+      <!-- Pet Card and Match Overlay Container -->
+      <div id="card-wrapper">
+        <!-- Match Animation/Message Box -->
+        <div
+          id="match-message"
+          class="match-overlay hidden"
+          aria-live="polite"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="64"
+            height="64"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            stroke="none"
+          >
+            <path
+              d="M12 17.75l-6.19 3.25 1.18-6.88-5-4.87 6.9-1.02 3.08-6.26 3.08 6.26 6.9 1.02-5 4.87 1.18 6.88z"
+            />
+          </svg>
+          <p class="match-text" data-testid="match-text">¡ES UN MATCH!</p>
+          <p class="matched-pet-name" id="matched-pet-name">
+            ¡Con nombre de la mascota!
+          </p>
+          <p class="match-subtitle">
+            ¡Conéctate para empezar el proceso de adopción!
+          </p>
+        </div>
+
+        <!-- Pet Card Template -->
+        <div id="pet-card" data-testid="pet-card">
+          <!-- Ejemplo de Contenido Dinámico (para la vista) -->
+          <div class="pet-card-content">
+            <h2>Max, 2 años</h2>
+            <p>Labrador - Juguetón y cariñoso.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Control Buttons -->
+      <div class="control-buttons-wrapper">
+        <button
+          id="dislike-btn"
+          class="control-btn"
+          aria-label="No me gusta"
+          data-testid="dislike-button"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="48"
+            height="48"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="icon-x"
+          >
+            <path d="M18 6L6 18M6 6l12 12" />
+          </svg>
+        </button>
+        <button
+          id="like-btn"
+          class="control-btn"
+          aria-label="Me gusta"
+          data-testid="like-button"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="48"
+            height="48"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            stroke="none"
+          >
+            <path
+              d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"
+            />
+          </svg>
+        </button>
+        <button
+          id="reset-btn"
+          class="control-btn"
+          aria-label="Reiniciar lista"
+          title="Reiniciar lista"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="36"
+            height="36"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M21 12a9 9 0 1 0-3.17 6.36L21 12z" />
+            <polyline points="21 6 21 12 15 12" />
+          </svg>
+        </button>
+      </div>
+
+      <p id="status-message">Cargando...</p>
+
+      <div
+        id="toast"
+        class="toast hidden"
+        role="status"
+        aria-live="polite"
+      ></div>
+    </div>
+
+    <!-- Guard de sesión -->
+    <script type="module" src="../services/page-guard.js"></script>
+    <!-- Lógica propia de Match -->
+    <script type="module" src="../Match/match-presenter.js"></script>
+  </body>
+</html>

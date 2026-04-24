@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MatchPet - Registra a tu Compañero</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="registerStyle.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <a href="../Match/match.html" class="logo-box">
+                <img src="../assets/Logo.png" alt="MatchPet Logo" class="logo-image">
+            </a>
+        </div>
+        <div class="navbar-nav">
+            <a class="btn-search" href="../Search_for_pet/Search.html">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                Buscar
+            </a>
+            <a class="nav-link current-page" href="./Register.html">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                <span>Publicar</span>
+            </a>
+            <a class="nav-link" href="../Match/match.html">
+                <i class="fa-solid fa-heart"></i>
+                <span>Match</span>
+            </a>
+            <div class="profile-container">
+                <div class="nav-separator" aria-hidden="true"></div>
+                <a href="../profile/profile.html" id="profile-pill" class="profile-pill">
+                    <i class="fa-solid fa-user"></i>
+                    <span id="profile-name">Usuario</span>
+                </a>
+            </div>
+            <a class="nav-link" href="../login/login.html" id="logout-link" title="Salir">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Salir</span>
+            </a>
+        </div>
+    </nav>
+
+    <main class="container-form">
+        <div class="card-container">
+            <header class="header-content">
+                <h1>¡Registra a tu Compañero! <i class="fa-solid fa-paw"></i></h1>
+                <p>Ayúdalo a encontrar su hogar perfecto</p>
+            </header>
+
+            <form class="form-content" id="register-form" novalidate>
+                <div class="image-upload-wrapper">
+                    <div class="image-upload-area" id="image-preview">
+                        <div id="camera-icon" class="camera-icon">
+                            <i class="fa-solid fa-camera"></i>
+                        </div>
+                        
+                        <input type="file" id="photo-upload" name="photo" accept="image/*"> 
+                        
+                        <label for="photo-upload" class="upload-button-floating">
+                            <i class="fa-solid fa-upload"></i>
+                        </label>
+                    </div>
+                    <label for="photo-upload" class="upload-label">Subir foto</label>
+                </div>
+
+                <div class="form-fields">
+                    <div>
+                        <label for="name" class="form-label">Nombre de la Mascota *</label>
+                        <input type="text" id="name" name="name" placeholder="Ej: Max, Luna, Rocky..." required class="custom-input">
+                    </div>
+
+                    <div class="grid-2-cols">
+                        <div>
+                            <label for="species" class="form-label">Especie *</label>
+                            <select id="species" name="species" class="custom-input" required>
+                                <option value="" disabled selected>Selecciona...</option> 
+                                <option value="perro">Perro</option>
+                                <option value="gato">Gato</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="breed" class="form-label">Raza</label>
+                            <input type="text" id="breed" name="breed" placeholder="Ej: Labrador, Mestizo..." class="custom-input">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="age" class="form-label">Edad</label>
+                        <input type="text" id="age" name="age" placeholder="Ej: 2 años, Cachorro, Adulto..." class="custom-input">
+                    </div>
+
+                    <div>
+                        <label class="form-label">Sexo *</label>
+                        <div class="gender-options">
+                            <div class="gender-option">
+                                <input type="radio" id="male" name="gender" value="macho" required class="radio-input">
+                                <label for="male">Macho</label>
+                            </div>
+                            <div class="gender-option">
+                                <input type="radio" id="female" name="gender" value="hembra" class="radio-input">
+                                <label for="female">Hembra</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="personality" class="form-label">Personalidad / Sobre mí</label>
+                        <textarea id="personality" name="personality" rows="4" placeholder="Cuéntanos sobre su personalidad, comportamiento, necesidades especiales..." class="custom-input"></textarea>
+                    </div>
+                </div>
+
+                <div id="form-message" class="text-center text-sm font-semibold hidden" role="alert"></div>
+
+                <button type="submit" class="btn-submit">
+                    <i class="fa-solid fa-heart"></i>
+                    <span>¡Publicar Mascota!</span>
+                </button>
+
+                <div class="link-volver">
+                    <a href="../Match/match.html">Volver</a>
+                </div>
+            </form>
+        </div>
+    </main>
+    
+    <script type="module" src="../services/page-guard.js"></script>
+    <script type="module" src="./register.presenter.js"></script>
+</body>
+</html>

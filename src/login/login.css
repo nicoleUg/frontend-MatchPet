@@ -1,0 +1,255 @@
+:root {
+    /* Colores Basados en la Imagen */
+    --color-primary: #005E76; /* Azul Oscuro (texto principal) */
+    --color-secondary: #FF7F32; /* Naranja (botones y detalles) */
+    --color-background-start: #e0f7fa; /* Verde/Azul claro para el fondo */
+    --color-background-end: #f1f8e9; /* Amarillo/Naranja claro para el fondo */
+    --color-card-bg: #ffffff; /* Fondo del formulario */
+    --color-text-muted: #888; /* Texto gris sutil */
+    --color-input-bg: #f3f3f5; /* Fondo del input */
+    --color-placeholder: #a0a0a0; /* Color del placeholder */
+    --color-shadow: rgba(0, 0, 0, 0.1);
+
+    /* Tipografía y Espaciado */
+    --font-family: 'Inter', sans-serif;
+    --border-radius: 0.625rem; /* 10px */
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+}
+
+/* Reset y Estilos Base */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--color-background-start);
+    /* Fondo degradado y sutiles patitas */
+    background-image: 
+        repeating-radial-gradient(circle at 10% 10%, rgba(255, 255, 255, 0.2), transparent 10px),
+        repeating-radial-gradient(circle at 90% 90%, rgba(255, 255, 255, 0.2), transparent 10px),
+        linear-gradient(135deg, var(--color-background-start) 0%, var(--color-background-end) 100%);
+    background-size: cover;
+    padding: var(--spacing-md);
+}
+
+/* Ocultar labels para accesibilidad */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* Contenedor principal para centrar el formulario */
+.container {
+    width: 100%;
+    max-width: 400px;
+}
+
+/* --- Estilos de la Tarjeta (Card) --- */
+.card {
+    background-color: var(--color-card-bg);
+    border-radius: calc(var(--border-radius) * 2); 
+    padding: var(--spacing-lg) var(--spacing-lg);
+    box-shadow: 0 10px 30px var(--color-shadow);
+    text-align: center;
+    width: 100%;
+}
+
+/* --- Encabezado --- */
+.header-content {
+    margin-bottom: var(--spacing-lg);
+}
+.header-content h1 {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    margin-top: var(--spacing-sm);
+    font-weight: 600;
+}
+.header-content p {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin-top: 0.25rem;
+}
+
+/* Logo Circular de Patitas */
+.logo-circle {
+    width: 4.5rem;
+    height: 4.5rem;
+    background-color: var(--color-secondary);
+    border-radius: 50%;
+    margin: 0 auto;
+    /* Estas 3 líneas son clave para centrar la imagen dentro del círculo: */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* Mantenlo para posibles futuros elementos superpuestos */
+}
+.logo-image {
+    max-width: 100%; /* La imagen nunca será más ancha que su contenedor */
+    max-height: 100%; /* La imagen nunca será más alta que su contenedor */
+    object-fit: contain; /* Asegura que la imagen esté contenida sin ser recortada */
+    border-radius: 50%; /* Opcional: para que la imagen también se vea circular si es cuadrada */
+    /* Añade un poco de relleno interno si es necesario para que no toque el borde del círculo */
+    padding: 0.5rem; 
+}
+
+/* --- Formulario --- */
+.form-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.input-group {
+    width: 100%;
+    text-align: left;
+}
+
+/* Inputs y Textareas */
+.custom-input {
+    width: 100%;
+    padding: 0.875rem;
+    background-color: var(--color-input-bg);
+    border: 2px solid transparent;
+    border-radius: var(--border-radius);
+    font-size: 0.95rem;
+    color: var(--color-primary);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.custom-input::placeholder {
+    color: var(--color-placeholder);
+}
+.custom-input:focus {
+    outline: none;
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 0 4px rgba(255, 127, 50, 0.15);
+}
+
+/* --- Botón Primario --- */
+.btn-primary {
+    width: 100%;
+    padding: 0.875rem;
+    background-color: var(--color-secondary);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+.btn-primary:hover {
+    background-color: #e66d1f;
+}
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+.btn-primary:disabled {
+    background-color: #999;
+    cursor: not-allowed;
+}
+
+/* --- Separador "o" --- */
+.separator {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    margin: var(--spacing-sm) 0;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+}
+.separator::before,
+.separator::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background-color: #d9d9d9;
+}
+.separator::before {
+    left: 0;
+}
+.separator::after {
+    right: 0;
+}
+
+/* --- Botón Secundario (Invertido) --- */
+.btn-secondary {
+    width: 100%;
+    display: inline-block;
+    padding: 0.875rem;
+    background-color: white;
+    color: var(--color-secondary);
+    border: 2px solid var(--color-secondary);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.btn-secondary:hover {
+    background-color: var(--color-secondary);
+    color: white;
+}
+
+/* --- Forgot Password Link --- */
+.forgot-password {
+    display: block;
+    margin-top: var(--spacing-sm);
+    font-size: 0.9rem;
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.forgot-password:hover {
+    color: var(--color-secondary);
+    text-decoration: underline;
+}
+
+/* --- Mensajes de Error y Éxito --- */
+.message {
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    text-align: left;
+}
+
+.error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.success-message {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+/* --- Responsive --- */
+@media (max-width: 500px) {
+    .card {
+        padding: var(--spacing-md);
+    }
+    .header-content h1 {
+        font-size: 1.25rem;
+    }
+}

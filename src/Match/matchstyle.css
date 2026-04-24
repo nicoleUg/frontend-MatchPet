@@ -1,0 +1,294 @@
+/* --- Variables de Diseño (Copiadas de registerStyle.css) --- */
+        :root {
+            --font-size: 16px;
+            --background: #ffffff;
+            --foreground: #005E76; /* Color de texto principal */
+            --card: #ffffff;
+            --primary: #005E76; /* Azul Oscuro */
+            --primary-foreground: #ffffff;
+            --muted: #ececf0; /* Fondo sutil/gris claro */
+            --muted-foreground: #717182; /* Gris para texto secundario */
+            --destructive: #d4183d; /* Rojo para Dislike/Alerta */
+            --button-start: #FF7F32; /* Naranja fuerte */
+            --button-end: #FF9A8B; /* Coral suave */
+            --match-color: var(--button-start); /* Usaremos el naranja/coral para Like/Match */
+            --radius: 0.625rem;
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* --- Estilos Globales y Layout --- */
+        * {
+            box-sizing: border-box;
+            font-family: 'Inter', Arial, sans-serif;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            font-size: var(--font-size);
+            background-image: linear-gradient(135deg, #e0f7fa 0%, #f1f8e9 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            padding-top: 80px;
+            color: var(--foreground);
+        }
+        
+        #app-container {
+            width: 100%;
+            max-width: 480px; /* max-w-lg */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 40px auto;
+            padding: 20px 0;
+        }
+
+        h1 {
+            font-size: 2.25rem; /* text-4xl */
+            font-weight: 800; /* font-extrabold */
+            color: var(--primary); 
+            margin-bottom: 2rem; /* mb-8 */
+            letter-spacing: -0.025em; /* tracking-tight */
+        }
+
+        /* --- Tarjeta de Mascota --- */
+        #card-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1 / 1.25; 
+            max-height: 600px;
+        }
+
+        #pet-card {
+            background-color: var(--card);
+            border-radius: var(--radius); /* rounded-xl */
+            box-shadow: var(--shadow-xl);
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .pet-card-content {
+            padding: 1rem;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            /* Degradado de negro a transparente para legibilidad del texto */
+            background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));
+            color: white;
+        }
+        .pet-card-content h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        .pet-card-content p {
+            font-size: 1rem;
+            margin-top: 0.25rem;
+        }
+        
+        #pet-card::before {
+            content: "Imagen de la Mascota";
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            background-color: var(--muted);
+            color: var(--muted-foreground);
+            font-size: 1.5rem;
+        }
+
+        /* --- Overlay de Match --- */
+        #match-message {
+            position: absolute;
+            inset: 0;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            /* Usamos el color de los botones (naranja/coral) para el overlay de Match */
+            background-color: rgba(255, 127, 50, 0.9); /* var(--button-start) con opacidad */
+            backdrop-filter: blur(4px); 
+            padding: 2rem;
+            border-radius: var(--radius);
+            color: white;
+            box-shadow: var(--shadow-xl);
+            text-align: center;
+        }
+        #match-message.hidden {
+            display: none;
+        }
+
+        #match-message svg {
+            width: 4rem; 
+            height: 4rem; 
+            margin-bottom: 1rem; 
+            stroke: white;
+            fill: white; /* Rellenamos la estrella para que se vea */
+        }
+
+        [data-testid="match-text"] {
+            font-size: 3rem; 
+            font-weight: 800; 
+        }
+
+        #matched-pet-name {
+            font-size: 1.5rem; 
+            margin-top: 0.5rem; 
+        }
+        
+        /* --- Botones de Control (Like/Dislike) --- */
+        .control-buttons-wrapper {
+            display: flex;
+            gap: 4rem; 
+            margin-top: 3rem; 
+        }
+
+        .control-btn {
+            width: 6rem; 
+            height: 6rem; 
+            border-radius: 9999px; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-md);
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+            border: none;
+        }
+
+        .control-btn:hover {
+            box-shadow: var(--shadow-xl);
+            transform: scale(1.1);
+        }
+
+        .control-btn:active {
+            transform: scale(0.95);
+        }
+
+        .control-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Estilos específicos del Dislike (X) */
+        #dislike-btn {
+            /* Fondo muy claro, borde y color del icono destructivo */
+            background-color: #fcebeb; 
+            color: var(--destructive); 
+            border: 4px solid #f87171; 
+        }
+        #dislike-btn svg {
+            stroke: var(--destructive);
+            fill: none;
+        }
+
+        /* Estilos específicos del Like (Corazón) */
+        #like-btn {
+            /* Fondo muy claro, borde y color del icono del color principal de la app */
+            background-color: #fff1e5; /* Un tono más claro del naranja/coral */
+            color: var(--match-color); 
+            border: 4px solid var(--button-end); 
+        }
+        #like-btn svg {
+            fill: var(--match-color);
+            stroke: none;
+        }
+
+        /* Iconos de los botones */
+        .control-btn svg {
+            width: 3rem; 
+            height: 3rem; 
+            stroke-width: 2;
+        }
+
+        /* Mensaje de estado (Cargando...) */
+        #status-message {
+            margin-top: 2rem; 
+            font-size: 0.875rem; 
+            color: var(--muted-foreground); 
+        }
+
+        /* CLASES DE ANIMACIÓN (Opcional, para el JS) */
+        .card-swipe-right {
+            transform: translateX(100vw) rotate(30deg);
+            opacity: 0;
+        }
+        .card-swipe-left {
+            transform: translateX(-100vw) rotate(-30deg);
+            opacity: 0;
+        }
+                /* --- Overlays de Like / Dislike (centrados) --- */
+                .swipe-overlay {
+                    position: absolute;
+                    inset: 0;
+                    z-index: 12;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    pointer-events: none;
+                    opacity: 0;
+                    transition: opacity 180ms ease, transform 300ms ease;
+                    border-radius: var(--radius);
+                }
+                .swipe-overlay.show {
+                    opacity: 1;
+                }
+                .swipe-overlay.green {
+                    background-color: rgba(16, 185, 129, 0.85); /* green-500/85 */
+                }
+                .swipe-overlay.red {
+                    background-color: rgba(239, 68, 68, 0.85); /* red-500/85 */
+                }
+                .overlay-icon {
+                    border: 8px solid white;
+                    border-radius: 1rem;
+                    padding: 1rem;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 6rem;
+                    height: 6rem;
+                    box-shadow: var(--shadow-md);
+                    transform: rotate(12deg) scale(1);
+                }
+                .overlay-icon.x {
+                    transform: rotate(-12deg) scale(1);
+                }
+                .overlay-icon svg {
+                    width: 3.5rem;
+                    height: 3.5rem;
+                    color: white;
+                }
+
+                /* --- Toast breve --- */
+                .toast {
+                    position: absolute;
+                    top: -1.5rem;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background: rgba(0,0,0,0.85);
+                    color: white;
+                    padding: 0.75rem 1rem;
+                    border-radius: 0.5rem;
+                    box-shadow: var(--shadow-md);
+                    z-index: 30;
+                    font-weight: 600;
+                    pointer-events: none;
+                    transition: opacity 180ms ease, transform 200ms ease;
+                }
+                .toast.hidden {
+                    opacity: 0;
+                    transform: translateX(-50%) translateY(-6px);
+                    display: none;
+                }
+                .toast.show {
+                    display: block;
+                    opacity: 1;
+                    transform: translateX(-50%) translateY(0);
+                }

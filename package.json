@@ -1,0 +1,23 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "Demo frontend (Parcel) sin Firebase ni tests",
+  "default": "index.html",
+  "type": "module",
+  "scripts": {
+    "start": "parcel index.html src/Match/match.html src/Search_for_pet/Search.html src/Register_Pet/Register.html src/profile/profile.html",
+    "build": "parcel build index.html src/Match/match.html src/Search_for_pet/Search.html src/Register_Pet/Register.html src/profile/profile.html",
+    "test": "node -e \"console.log('No tests configured (demo frontend)')\"",
+    "lint": "eslint .",
+    "semantic-commits-on": "node semantic-commits.js enable",
+    "semantic-commits-off": "node semantic-commits.js disabled"
+  },
+  "author": "Israel Antezana R.",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^9.10.0",
+    "parcel": "^2.16.1",
+    "sonarqube-scanner": "^4.3.6",
+    "svgo": "^4.0.0"
+  }
+}

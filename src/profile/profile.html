@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MatchPet - Perfil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-logo">
+      <div class="logo-box">
+        <a href="../Match/match.html"><img src="../assets/Logo.png" alt="MatchPet Logo" class="logo-image"></a>
+      </div>
+    </div>
+    <div class="navbar-nav">
+      <a class="btn-search" href="../Search_for_pet/Search.html"><i class="fa-solid fa-magnifying-glass"></i> Buscar</a>
+      <a class="nav-link" href="../Register_Pet/Register.html"><i class="fa-solid fa-cloud-arrow-up"></i> <span>Publicar</span></a>
+      <a class="nav-link" href="../Match/match.html"><i class="fa-solid fa-heart"></i> <span>Match</span></a>
+      <div class="profile-container">
+        <div class="nav-separator" aria-hidden="true"></div>
+        <a href="../profile/profile.html" id="profile-pill" class="profile-pill">
+          <i class="fa-solid fa-user"></i>
+          <span id="profile-name">Usuario</span>
+        </a>
+      </div>
+      <a class="nav-link" href="#" id="logout-link" title="Salir"><i class="fa-solid fa-right-from-bracket"></i> <span>Salir</span></a>
+    </div>
+  </nav>
+
+  <main class="profile-main">
+    <header class="profile-header">
+      <h1>Mi Perfil</h1>
+      <p class="profile-subtitle">Gestiona tu información </p>
+    </header>
+
+    <section id="profile-card" class="profile-card">
+      <div class="profile-left">
+        <div class="avatar-wrap">
+          <div class="logo-avatar" id="profile-avatar">N</div>
+          <button class="camera-btn" title="Cambiar foto"><i class="fa-solid fa-camera"></i></button>
+        </div>
+        <button id="edit-profile-btn" class="edit-btn">Editar Perfil</button>
+      </div>
+
+      <div class="profile-right">
+        <!-- logout inline removed (kept logout in navbar) -->
+        <h2 id="profile-display">Cargando información de usuario...</h2>
+        <p id="profile-email" class="muted">Cargando información de usuario...</p>
+        <p id="profile-bio" class="profile-bio">Aquí podrás editar tu información y ver tus matches.</p>
+      </div>
+    </section>
+
+    <!-- Estadísticas: Matches, Publicados, Adoptados -->
+    <section id="profile-stats" class="profile-stats">
+      <div class="stat-card stat-matches">
+        <div class="stat-icon"><i class="fa-solid fa-heart"></i></div>
+        <div class="stat-number" id="matches-count">0</div>
+        <div class="stat-label">Matches</div>
+      </div>
+      <div class="stat-card stat-published">
+        <div class="stat-icon"><i class="fa-solid fa-paw"></i></div>
+        <div class="stat-number" id="published-count">0</div>
+        <div class="stat-label">Publicados</div>
+      </div>
+      <div class="stat-card stat-adopted">
+        <div class="stat-icon"><i class="fa-solid fa-check"></i></div>
+        <div class="stat-number" id="adopted-count">0</div>
+        <div class="stat-label">Adoptados</div>
+      </div>
+    </section>
+    <!-- Matches recientes -->
+    <section class="recent-matches-container">
+      <h3 class="recent-title"><i class="fa-regular fa-heart"></i> Matches Recientes</h3>
+      <div class="matches-list"></div>
+    </section>
+    <!-- Adopted pets list -->
+    <section class="adopted-section">
+      <h3 class="recent-title"><i class="fa-solid fa-house"></i> Mis Mascotas Adoptadas</h3>
+      <div class="adopted-list"></div>
+    </section>
+    
+  </main>
+
+  <link rel="stylesheet" href="./profile.theme.css" />
+  <link rel="stylesheet" href="./profile.css" />
+  <script type="module" src="../services/page-guard.js"></script>
+  <script type="module" src="./profile.presenter.js"></script>
+</body>
+</html>

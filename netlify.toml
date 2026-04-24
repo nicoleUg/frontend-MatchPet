@@ -1,0 +1,13 @@
+[build]
+  # Directorio de publicación generado por Parcel
+  publish = "dist"
+  
+  # Comando de build
+  command = "npm run build"
+
+# Redirigir todas las rutas no encontradas al index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
