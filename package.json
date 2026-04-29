@@ -10,7 +10,8 @@
     "test": "node -e \"console.log('No tests configured (demo frontend)')\"",
     "lint": "eslint .",
     "semantic-commits-on": "node semantic-commits.js enable",
-    "semantic-commits-off": "node semantic-commits.js disabled"
+    "semantic-commits-off": "node semantic-commits.js disabled",
+    "sonar": "sonar-scanner"
   },
   "author": "Israel Antezana R.",
   "license": "ISC",
